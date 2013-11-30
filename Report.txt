@@ -2,7 +2,11 @@ What we have learned…
 
 … about modelling
 
-Is important to communicate an architecture.
+Modeling the architecture is one of the first steps when developing systems. As the model describes the functional and structural properties of the system, it should be as accurate and unambiguous as possible.
+In teams, heterogenous technical qualifications of the member are prevalent, therefore a common ground must be established when describing models. To achieve that, standardized modelling languages are often used. 
+Our team chose UML and xADL as modelling languages because neither of them suffice to describe the given system alone. Both languages focus on different aspects respectively. 
+It is of the utmost importance to have the same understanding of the architecture between the team members. When the system is described using arbitrary diagrams, the understanding of the diagrams has to be synchronized again, because visual representations in particular are prone to different interpretations.
+The synchronization of the mental models is very time-consuming in general and communication is the best way to achieve that. The architecture and the level of abstraction must be discussed with the entire team thoroughly.
 
 Like:
 -> Easy to give an overview.
@@ -11,9 +15,11 @@ Like:
 
 … about notations
 
-Different notations have different strength. E.g. UML emphasizes on providing a good overview, but is ambiguous. xADL is restricted, not as clear but can be used to generate code.
+Every notation is designed for a specific problem domain, this limits its usage outside that domain. Different notations have different strengths and weaknesses and this is in particular true for UML and xADL. UML emphasizes on providing a good overview, but is ambiguous. xADL designed to model structional properties and describing interfaces. Like many XML dialects, xADL is also very verbose. A graphical editor for xADL documents are virtually mandatory. It is very specific and can be the starting point for code generation. 
 
+We used Archstudio 4 as graphical interface for xADL, which is an Eclipse plugin. The user interface depends heavily on context menus and is not intuitive. Simple tasks like adding an interface to a component takes a lot of steps.
 Like:
+
 -> Graphical is better understandable than text, but lacks details. E.g. what distribution algorithm is a Message Queue using?
 
 Dislike:
@@ -43,7 +49,3 @@ Like:
 
 
 … about the properties of the system
-
-
-
-
