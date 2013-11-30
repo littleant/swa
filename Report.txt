@@ -10,18 +10,25 @@ What we have learned…
 
 … about the tools
 
+Dislike:
+
+-> Not clear what they do at first sight.
+-> Very complicated UI to do simple things.
+
 Archstudio 4: 
 
 Dislike: 
 
 -> Too much right-Click based menus, so everything takes a lot of time and clicks.
 -> To set a Connection it needs a lot of clicks. It would be better to select 2 components and the tool makes a connection between them.
--> "DEL" Button should work for removing an element.    
+-> "DEL" Button should work for removing an element.
+-> Unintuitive GUI, it's not clear (without a tutorial) how to use the editors (or which editor to use for what).
 
 Like:
 
 -> Automatic code generation.
 -> Gives a good overview of the structure/architecture of the system.
+-> Avoids editing XML
 
 
 … about the properties of the system
