@@ -2,11 +2,22 @@ What we have learned…
 
 … about modelling
 
+Is important to communicate an architecture.
 
+Like:
+-> Easy to give an overview.
 
 
 
 … about notations
+
+Different notations have different strength. E.g. UML emphasizes on providing a good overview, but is ambiguous. xADL is restricted, not as clear but can be used to generate code.
+
+Like:
+-> Graphical is better understandable than text, but lacks details. E.g. what distribution algorithm is a Message Queue using?
+
+Dislike:
+-> (Visual) grouping of components in xADL not possible. Would make it even clearer to understand at first sight. E.g. grouping of Server, Client and Peer components.
 
 … about the tools
 
