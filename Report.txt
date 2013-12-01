@@ -1,3 +1,39 @@
+
+Part1:
+
+
+<UML Model Screenshot>
+
+<Description>
+
+
+<xADL Model Screenshot>
+
+Description: 
+
+Client: 
+The client model has a view component for user interaction (e.g. make requests, view results of requests). With the “Sound Recorder” component the client can ask about recorded music. 
+“Fingerprint Generator” generates a fingerprint from a music recording. This fingerprint will be sent to the “Server Model” over the “Synchronous Server Proxy” Connector.  
+It also gets the result from the server with the “Synchronous Server Proxy” Connector.
+
+Server:
+The database stores the whole information needed from the server (e.g. coins of clients). 
+The server model transmits a client request to the “Network Manager”. “Peer Router” searches for some relevant peers for a request and offers them to the “Network Manager”. 
+“Message Listener” receives successfully identified fingerprints from peers, so that the server can manage coin handling and passing the result to the client. 
+For user interaction the server has a “View” – Component.
+
+
+Peers:
+The “P2P Connector” gives requests to specific peers, which try to identify the fingerprint. 
+If a peer successfully identified a fingerprint it sends a message to the “Message Queue”. 
+“Neighbour Router” chooses some common peers and passes a fingerprint to them. New peers have to subscribe at the “Join Listener” Component, so that they appear on the servers peer list. 
+For preventing dead peers there should be a periodical message from all peers. “Request Listener” waits for fingerprints from the “P2P Connector”. 
+Every peer has also a view for user interaction. “Music Library” stores all music known from the peer.
+
+
+Part2:
+
+
 What we have learned…
 
 … about modelling
@@ -49,3 +85,4 @@ Like:
 
 
 … about the properties of the system
+
