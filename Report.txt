@@ -4,7 +4,8 @@ Part1:
 
 <UML Model Screenshot>
 
-<Description>
+As our thoughts about the architecture may not be perfectly clear from the xADL model alone, we decided to describe standard activities of each component.
+That leads to one UML activity diagram for the standard behaviour of each a client application, a server process and a peer process.
 
 
 <xADL Model Screenshot>
@@ -12,31 +13,31 @@ Part1:
 Description: 
 
 Client: 
-The client model has a view component for user interaction (e.g. make requests, view results of requests). With the “Sound Recorder” component the client can ask about recorded music. 
-“Fingerprint Generator” generates a fingerprint from a music recording. This fingerprint will be sent to the “Server Model” over the “Synchronous Server Proxy” Connector.  
-It also gets the result from the server with the “Synchronous Server Proxy” Connector.
+The client model has a view component for user interaction (e.g. make requests, view results of requests). With the Ã¬Sound RecorderÃ® component the client can ask about recorded music. 
+Ã¬Fingerprint GeneratorÃ® generates a fingerprint from a music recording. This fingerprint will be sent to the Ã¬Server ModelÃ® over the Ã¬Synchronous Server ProxyÃ® Connector.  
+It also gets the result from the server with the Ã¬Synchronous Server ProxyÃ® Connector.
 
 Server:
 The database stores the whole information needed from the server (e.g. coins of clients). 
-The server model transmits a client request to the “Network Manager”. “Peer Router” searches for some relevant peers for a request and offers them to the “Network Manager”. 
-“Message Listener” receives successfully identified fingerprints from peers, so that the server can manage coin handling and passing the result to the client. 
-For user interaction the server has a “View” – Component.
+The server model transmits a client request to the Ã¬Network ManagerÃ®. Ã¬Peer RouterÃ® searches for some relevant peers for a request and offers them to the Ã¬Network ManagerÃ®. 
+Ã¬Message ListenerÃ® receives successfully identified fingerprints from peers, so that the server can manage coin handling and passing the result to the client. 
+For user interaction the server has a Ã¬ViewÃ® Ã± Component.
 
 
 Peers:
-The “P2P Connector” gives requests to specific peers, which try to identify the fingerprint. 
-If a peer successfully identified a fingerprint it sends a message to the “Message Queue”. 
-“Neighbour Router” chooses some common peers and passes a fingerprint to them. New peers have to subscribe at the “Join Listener” Component, so that they appear on the servers peer list. 
-For preventing dead peers there should be a periodical message from all peers. “Request Listener” waits for fingerprints from the “P2P Connector”. 
-Every peer has also a view for user interaction. “Music Library” stores all music known from the peer.
+The Ã¬P2P ConnectorÃ® gives requests to specific peers, which try to identify the fingerprint. 
+If a peer successfully identified a fingerprint it sends a message to the Ã¬Message QueueÃ®. 
+Ã¬Neighbour RouterÃ® chooses some common peers and passes a fingerprint to them. New peers have to subscribe at the Ã¬Join ListenerÃ® Component, so that they appear on the servers peer list. 
+For preventing dead peers there should be a periodical message from all peers. Ã¬Request ListenerÃ® waits for fingerprints from the Ã¬P2P ConnectorÃ®. 
+Every peer has also a view for user interaction. Ã¬Music LibraryÃ® stores all music known from the peer.
 
 
 Part2:
 
 
-What we have learned…
+What we have learnedÃ–
 
-… about modelling
+Ã– about modelling
 
 Modeling the architecture is one of the first steps when developing systems. As the model describes the functional and structural properties of the system, it should be as accurate and unambiguous as possible.
 In teams, heterogenous technical qualifications of the member are prevalent, therefore a common ground must be established when describing models. To achieve that, standardized modelling languages are often used. 
@@ -49,7 +50,7 @@ Like:
 
 
 
-… about notations
+Ã– about notations
 
 Every notation is designed for a specific problem domain, this limits its usage outside that domain. Different notations have different strengths and weaknesses and this is in particular true for UML and xADL. UML emphasizes on providing a good overview, but is ambiguous. xADL designed to model structional properties and describing interfaces. Like many XML dialects, xADL is also very verbose. A graphical editor for xADL documents are virtually mandatory. It is very specific and can be the starting point for code generation. 
 
@@ -61,7 +62,7 @@ Like:
 Dislike:
 -> (Visual) grouping of components in xADL not possible. Would make it even clearer to understand at first sight. E.g. grouping of Server, Client and Peer components.
 
-… about the tools
+Ã– about the tools
 
 Dislike:
 
@@ -84,5 +85,5 @@ Like:
 -> Avoids editing XML
 
 
-… about the properties of the system
+Ã– about the properties of the system
 
