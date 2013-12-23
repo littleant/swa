@@ -35,6 +35,11 @@ public class FingerprintGenerator {
 		logger.debug("Got {} file(s)!", files.length);
 		
 		for (File file : files) {
+			if (file == null) {
+				// skip file
+				continue;
+			}
+			
 			if (file.isDirectory()) {
 	            logger.debug("Directory: {}", file.getName());
 	            fingerprints.putAll(this.fingerprintFiles(file.listFiles()));
