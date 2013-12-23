@@ -1,10 +1,15 @@
 package at.ac.tuwien.peer;
 
-import java.io.File;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import at.ac.tuwien.peer.music.MusicLibrary;
+
+/**
+ * P2P peer that fingerprints music files and connects to other peers to receive music-identification-requests
+ * 
+ * @author Andreas
+ */
 public class Peer implements Runnable {
 	final Logger logger = LoggerFactory.getLogger(Peer.class);
 
@@ -13,47 +18,13 @@ public class Peer implements Runnable {
 		logger.info("Starting peer...");
 		
 		// fingerprint some files and save them in the database
-		String audioFilePath = "/home/anty/Uni/VU_Software_Architecture/github/swa/music/";
-		File[] files = new File[1];
-		File file = new File(audioFilePath);
-		files[0] = file;
-		
-		logger.info("Fingerprinting \"{}\"...", audioFilePath);
-		int fingerprintCount = this.fingerprintFiles(files);
-		logger.info("{} fingerprints generated.", fingerprintCount);
+		MusicLibrary musicLibrary = new MusicLibrary();
+		musicLibrary.fingerprintDisk();
 		
 		// run peer code here
 		// TODO
 		
 		logger.info("Peer stopped.");
-	}
-	
-	/**
-	 * Fingerprint all audio files of the directories and return number of fingerprinted files.
-	 * 
-	 * @param files Files or directories to fingerprint
-	 * @return Number of files that have been fingerprinted
-	 */
-	private int fingerprintFiles(File[] files) {
-		int fileCount = 0;
-		
-		logger.debug("Got {} files!", files.length);
-		
-		for (File file : files) {
-			if (file.isDirectory()) {
-	            logger.debug("Directory: {}", file.getName());
-	            fileCount += this.fingerprintFiles(file.listFiles());
-	        } else {
-	            logger.debug("File: {}", file.getName());
-	            
-	            // fingerprint file
-	            // TODO
-
-	            fileCount++;
-	        }
-		}
-		
-		return fileCount;
 	}
 
 	/**
@@ -62,7 +33,7 @@ public class Peer implements Runnable {
 	public void stop() {
 		logger.info("Stopping peer...");
 		
-		// shut down peer
+		// shutdown peer
 		// TODO
 	}
 }

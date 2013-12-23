@@ -49,18 +49,6 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-<!-- 
-   	<dependency>
-    	<groupId>org.slf4j</groupId>
-    	<artifactId>slf4j-simple</artifactId>
-    	<version>1.6.2</version>
-    </dependency>
--->
-    <dependency>
-    	<groupId>org.hibernate</groupId>
-    	<artifactId>hibernate-core</artifactId>
-    	<version>4.3.0.CR2</version>
-    </dependency>
     <dependency>
     	<groupId>ac.at.tuwien.infosys.swa.audio</groupId>
 		<artifactId>fingerprint</artifactId>
@@ -70,6 +58,11 @@
     	<groupId>org.slf4j</groupId>
     	<artifactId>slf4j-log4j12</artifactId>
     	<version>1.6.1</version>
+    </dependency>
+    <dependency>
+    	<groupId>hsqldb</groupId>
+    	<artifactId>hsqldb</artifactId>
+    	<version>1.8.0.8patch02-brew</version>
     </dependency>
   </dependencies>
 </project>

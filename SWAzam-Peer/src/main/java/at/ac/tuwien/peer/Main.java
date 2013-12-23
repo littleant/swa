@@ -6,6 +6,11 @@ import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Main class to start the SWAzam peer
+ * 
+ * @author Andreas
+ */
 public class Main {
 
 	public static void main(String[] args) {
