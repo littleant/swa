@@ -44,12 +44,6 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
     	<groupId>ac.at.tuwien.infosys.swa.audio</groupId>
 		<artifactId>fingerprint</artifactId>
 		<version>0.2-SNAPSHOT</version>
@@ -63,6 +57,11 @@
     	<groupId>hsqldb</groupId>
     	<artifactId>hsqldb</artifactId>
     	<version>1.8.0.8patch02-brew</version>
+    </dependency>
+    <dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    	<version>4.10</version>
     </dependency>
   </dependencies>
 </project>

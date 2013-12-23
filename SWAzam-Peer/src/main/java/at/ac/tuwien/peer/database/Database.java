@@ -73,7 +73,7 @@ public class Database {
 	public String identifyFingerprint(Fingerprint fingerprint) {
 		String name = null;
 		try {
-			String sql = "SELECT name FROM fingerprints WHERE name = ?";
+			String sql = "SELECT name FROM fingerprints WHERE fingerprint = ?";
 			PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
 			preparedStatement.setString(1, fingerprint.toString());
 			ResultSet resultSet = preparedStatement.executeQuery();
