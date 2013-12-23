@@ -33,7 +33,7 @@ public class Database {
 			String sql = "CREATE TABLE fingerprints (name VARCHAR(255), fingerprint LONGVARCHAR, PRIMARY KEY(fingerprint))";
 			statement.executeUpdate(sql);
 		} catch (SQLException e) {
-			logger.error(e.getLocalizedMessage(), e);
+			logger.debug(e.getLocalizedMessage(), e);
 		} catch (ClassNotFoundException e) {
 			logger.error(e.getLocalizedMessage(), e);
 		}

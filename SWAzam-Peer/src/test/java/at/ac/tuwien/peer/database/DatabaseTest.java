@@ -37,4 +37,48 @@ public class DatabaseTest {
 			fail(e.getLocalizedMessage());
 		}
 	}
+	
+	@Test
+	public void testSaveFingerprintsAndIdentifyFingerprintTwice() {
+		try {
+			AudioInputStream audio = AudioSystem.getAudioInputStream(new File("../music/01 - Anitek - Tab _ Anitek - Opaque.mp3"));
+			Fingerprint fingerprint = FingerprintSystem.fingerprint(audio);
+			Map<String, Fingerprint> fingerprints = new HashMap<String, Fingerprint>();
+			fingerprints.put("test name 1", fingerprint);
+			
+			Database database = new Database();
+			database.saveFingerprints(fingerprints);
+			database.saveFingerprints(fingerprints);
+			
+			assertEquals("test name 1", database.identifyFingerprint(fingerprint));
+		} catch (UnsupportedAudioFileException e) {
+			fail(e.getLocalizedMessage());
+		} catch (IOException e) {
+			fail(e.getLocalizedMessage());
+		}
+	}
+	
+
+	
+	@Test
+	public void testSaveFingerprintsAndIdentifyFingerprintTwoDifferentOnes() {
+		try {
+			String [] files = {"../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", "../music/02 - Anitek - Tab _ Anitek - Physical Graffiti.mp3"};
+			for (String file : files) {
+				AudioInputStream audio = AudioSystem.getAudioInputStream(new File(file));
+				Fingerprint fingerprint = FingerprintSystem.fingerprint(audio);
+				Map<String, Fingerprint> fingerprints = new HashMap<String, Fingerprint>();
+				fingerprints.put(file, fingerprint);
+				
+				Database database = new Database();
+				database.saveFingerprints(fingerprints);
+				
+				assertEquals(file, database.identifyFingerprint(fingerprint));
+			}
+		} catch (UnsupportedAudioFileException e) {
+			fail(e.getLocalizedMessage());
+		} catch (IOException e) {
+			fail(e.getLocalizedMessage());
+		}
+	}
 }
