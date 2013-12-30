@@ -6,13 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ac.at.tuwien.infosys.swa.audio.Fingerprint;
+import ac.at.tuwien.infosys.swa.audio.SubFingerprint;
 
 /**
  * Abstract database object to save and identify fingerprints and songs
@@ -30,7 +34,7 @@ public class Database {
 			
 			// create tables
 			Statement statement = this.connection.createStatement();
-			String sql = "CREATE TABLE fingerprints (name VARCHAR(255), fingerprint LONGVARCHAR, PRIMARY KEY(fingerprint))";
+			String sql = "CREATE TABLE fingerprints (name VARCHAR(255), start DOUBLE, shift DOUBLE, fingerprint LONGVARCHAR, PRIMARY KEY(fingerprint))";
 			statement.executeUpdate(sql);
 		} catch (SQLException e) {
 			logger.debug(e.getLocalizedMessage(), e);
@@ -53,10 +57,12 @@ public class Database {
 			fingerprint = fingerprints.get(name);
 			
 			try {
-				String sql = "INSERT INTO fingerprints (name, fingerprint) VALUES (?, ?)";
+				String sql = "INSERT INTO fingerprints (name, start, shift, fingerprint) VALUES (?, ?, ?, ?)";
 				PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
 				preparedStatement.setString(1, name);
-				preparedStatement.setString(2, fingerprint.toString());
+				preparedStatement.setDouble(2, fingerprint.getStartTime());
+				preparedStatement.setDouble(3, fingerprint.getShiftDuration());
+				preparedStatement.setString(4, fingerprint.toString());
 				preparedStatement.execute();
 			} catch (SQLException e) {
 				logger.error(e.getLocalizedMessage(), e);
@@ -73,18 +79,80 @@ public class Database {
 	public String identifyFingerprint(Fingerprint fingerprint) {
 		String name = null;
 		try {
-			String sql = "SELECT name FROM fingerprints WHERE fingerprint = ?";
+			String sql = "SELECT name, start, shift, fingerprint FROM fingerprints";
 			PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-			preparedStatement.setString(1, fingerprint.toString());
 			ResultSet resultSet = preparedStatement.executeQuery();
-			if (resultSet.next()) {
-				name = resultSet.getString("name");
+			while (resultSet.next()) {
+				Fingerprint tmpFingerprint = this.deserializeFingerprint(resultSet.getDouble("start"), resultSet.getDouble("shift"), resultSet.getString("fingerprint"));
+				if (fingerprint.match(tmpFingerprint) == 0.0) {
+					// found audio
+					
+					name = resultSet.getString("name");
+					
+					break;
+				}
 			}
 		} catch (SQLException e) {
 			logger.error(e.getLocalizedMessage(), e);
 		}
 		
 		return name;
+	}
+	
+	public Map<Fingerprint, String> getFingerprints() {
+		Map<Fingerprint, String> fingerprints = new HashMap<Fingerprint, String>();
+		
+		try {
+			String sql = "SELECT name, start, shift, fingerprint FROM fingerprints";
+			PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				fingerprints.put(this.deserializeFingerprint(resultSet.getDouble("start"), resultSet.getDouble("shift"), resultSet.getString("fingerprint")), resultSet.getString("name"));
+			}
+		} catch (SQLException e) {
+			logger.error(e.getLocalizedMessage(), e);
+		}
+		
+		return fingerprints;
+	}
+	
+	/**
+	 * Deserializes a fingerprint from a string
+	 * 
+	 * @param string Serialized Fingerprint
+	 * @return Fingerprint
+	 */
+	protected Fingerprint deserializeFingerprint(Double start, Double shift, String string) {
+		String[] strings = string.split(System.getProperty("line.separator"));
+		
+		Collection<SubFingerprint> subFingerprints = new LinkedList<SubFingerprint>();
+		for (String subString : strings) {
+			SubFingerprint subFingerprint = this.deserializeSubFingerprint(subString);
+			
+			subFingerprints.add(subFingerprint);
+		}
+		
+		Fingerprint fingerprint = new Fingerprint(start, shift, subFingerprints);
+		
+		return fingerprint;
+	}
+	
+	protected SubFingerprint deserializeSubFingerprint(String string) {
+		int value = 0;
+		
+		if (string.charAt(0) == 1) {
+			value = Integer.MIN_VALUE;
+		}
+		
+		for (int i = 1; i < string.length(); i++) {
+			if (string.charAt(i) == '1') {
+				value += Math.pow(2, (string.length() - 1) - i);
+			}
+		}
+		
+		SubFingerprint subFingerprint = new SubFingerprint(value);
+		
+		return subFingerprint;
 	}
 	
 	/**

@@ -24,4 +24,8 @@ public class DatabaseConnector {
 	public String identifyFingerprint(Fingerprint fingerprint) {
 		return database.identifyFingerprint(fingerprint);
 	}
+	
+	public Map<Fingerprint, String> getFingerprints() {
+		return database.getFingerprints();
+	}
 }

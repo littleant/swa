@@ -18,6 +18,18 @@ public class MusicLibrary {
 	static final Logger logger = LoggerFactory.getLogger(MusicLibrary.class);
 
 	/**
+	 * Retrieve all fingerprints from the database
+	 * 
+	 * @return Map of fingerprints and their names
+	 */
+	public Map<Fingerprint, String> getFingerprints() {
+		DatabaseConnector databaseConnector = new DatabaseConnector();
+		Map<Fingerprint, String> fingerprints = databaseConnector.getFingerprints();
+		
+		return fingerprints;
+	}
+	
+	/**
 	 * Fingerprint the music on the disk
 	 * 
 	 * @return Return the number of fingerprints generated
