@@ -1,4 +1,4 @@
-package at.ac.tuwien.peer.database;
+package at.ac.tuwien.swa.swazam.peer.database;
 
 import java.util.Map;
 

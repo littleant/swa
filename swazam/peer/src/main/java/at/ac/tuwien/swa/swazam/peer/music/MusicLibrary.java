@@ -1,4 +1,4 @@
-package at.ac.tuwien.peer.music;
+package at.ac.tuwien.swa.swazam.peer.music;
 
 import java.io.File;
 import java.util.Map;
@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ac.at.tuwien.infosys.swa.audio.Fingerprint;
-import at.ac.tuwien.peer.database.DatabaseConnector;
+import at.ac.tuwien.swa.swazam.peer.database.DatabaseConnector;
 
 /**
  * Music file and fingerprint interface

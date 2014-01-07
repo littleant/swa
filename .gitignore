@@ -15,3 +15,5 @@ RemoteSystemsTempFiles
 # Project Files #
 target
 /workspace
+.project
+.classpath

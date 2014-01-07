@@ -1,4 +1,4 @@
-package at.ac.tuwien.peer.music;
+package at.ac.tuwien.swa.swazam.peer.music;
 
 import java.io.File;
 import java.io.FileInputStream;

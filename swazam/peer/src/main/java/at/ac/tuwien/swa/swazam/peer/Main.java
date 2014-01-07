@@ -1,4 +1,4 @@
-package at.ac.tuwien.peer;
+package at.ac.tuwien.swa.swazam.peer;
 
 import java.io.IOException;
 

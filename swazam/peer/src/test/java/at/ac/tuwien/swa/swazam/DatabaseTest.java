@@ -1,7 +1,4 @@
-package at.ac.tuwien.peer.database;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+package at.ac.tuwien.swa.swazam;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,11 +10,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import org.junit.Test;
-
-import ac.at.tuwien.infosys.swa.audio.Fingerprint;
-import ac.at.tuwien.infosys.swa.audio.FingerprintSystem;
-import ac.at.tuwien.infosys.swa.audio.SubFingerprint;
+import at.ac.tuwien.swa.swazam.peer.database.Database;
 
 public class DatabaseTest {
 
