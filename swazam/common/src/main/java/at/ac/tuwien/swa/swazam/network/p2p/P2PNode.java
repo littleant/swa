@@ -36,8 +36,8 @@ public class P2PNode implements PeerListener {
 	}
 
 	public void sendRequest(String request) {
-		List<PeerConnector> connectors = router.getDestinations(request);
-		for (PeerConnector c : connectors) {
+		List<PeerMessenger> connectors = router.getDestinations(request);
+		for (PeerMessenger c : connectors) {
 			c.sendAsync(request);
 		}
 	}
@@ -48,7 +48,7 @@ public class P2PNode implements PeerListener {
 	}
 
 	@Override
-	public void register(Peer peer) {
+	public void register(PeerConnector peer) {
 		router.add(peer);
 	}
 

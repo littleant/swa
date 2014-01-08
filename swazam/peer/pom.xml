@@ -10,13 +10,14 @@
 	</parent>
 	<groupId>at.ac.tuwien.swa.swazam</groupId>
 	<artifactId>peer</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<name>peer</name>
+
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -63,6 +64,11 @@
 			<groupId>ac.at.tuwien.infosys.swa.audio</groupId>
 			<artifactId>fingerprint</artifactId>
 			<version>0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>at.ac.tuwien.swa.swazam</groupId>
+			<artifactId>common</artifactId>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<repositories>

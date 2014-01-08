@@ -1,34 +1,67 @@
 package at.ac.tuwien.swa.swazam.network.p2p;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 
-import at.ac.tuwien.swa.swazam.network.ExecutorFactory;
-import at.ac.tuwien.swa.swazam.network.NetworkConnector;
+/**
+ * Class NetworkManager to connect to Peers
+ * 
+ * @author x.zhang
+ * 
+ */
+class PeerConnector {
 
-public class PeerConnector implements NetworkConnector {
+	private Socket socket;
+	private ObjectInputStream inputStream;
+	private ObjectOutputStream outputStream;
+	private int listenerPort;
 
-	private PeerRouter router;
-	private Peer peer;
-	private ExecutorService executor;
-	
-	public PeerConnector(PeerRouter peerRouter, Peer peer) {
-		this.router = peerRouter;
-		this.peer = peer;
-		this.executor = ExecutorFactory.getExectutor();
+	public PeerConnector(Socket socket) throws IOException {
+		this.socket = socket;
+		inputStream = new ObjectInputStream(socket.getInputStream());
+		outputStream = new ObjectOutputStream(socket.getOutputStream());
+		listenerPort = inputStream.readInt();
 	}
 
-	public void sendAsync(final String request) {
-		System.out.println("Send: " + request);
-		executor.execute(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					peer.send(request);
-				} catch (IOException e) {
-					router.remove(peer);
-				}
-			}			
-		});
+	public void redirect(PeerConnector peer) {
+		SocketAddress socketAddress = new InetSocketAddress(peer.getSocket()
+				.getInetAddress(), peer.getPort());
+		try {
+			System.out.println("redirecting");
+			outputStream.writeObject(socketAddress);
+			outputStream.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void send(String request) throws IOException {
+		outputStream.writeObject(request);
+		outputStream.flush();
+	}
+
+	public Socket getSocket() {
+		return socket;
+	}
+
+	public int getPort() {
+		return listenerPort;
+	}
+
+	public void disconnect() {
+		try {
+			inputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			outputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

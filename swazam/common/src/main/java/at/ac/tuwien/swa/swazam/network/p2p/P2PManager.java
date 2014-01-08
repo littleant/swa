@@ -20,17 +20,19 @@ public class P2PManager implements NetworkManager, PeerListener {
 	}
 
 	@Override
-	public void register(Peer peer) {
+	public void register(PeerConnector peer) {
 		router.add(peer);
 	}
 	
+	@Override
 	public void sendRequest(String request) {
-		List<PeerConnector> connectors = router.getDestinations(request);
-		for(PeerConnector c : connectors) {
+		List<PeerMessenger> connectors = router.getDestinations(request);
+		for(PeerMessenger c : connectors) {
 			c.sendAsync(request);
 		}
 	}
 	
+	@Override
 	public void disconnect() {
 		joinListener.stop();
 		executor.shutdownNow();

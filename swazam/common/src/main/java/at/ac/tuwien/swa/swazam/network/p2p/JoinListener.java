@@ -5,7 +5,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class JoinListener implements Runnable {
+/**
+ * Waits at the server component for incoming peers
+ * @author x.zhang
+ *
+ */
+class JoinListener implements Runnable {
 
 	private int port;
 	private PeerListener manager;
@@ -29,7 +34,7 @@ public class JoinListener implements Runnable {
 			while (isActive.get()) {
 				Socket socket = server.accept();
 				System.out.println("new peer");
-				Peer peer = new Peer(socket);
+				PeerConnector peer = new PeerConnector(socket);
 				manager.register(peer);
 			}
 		} catch (IOException e) {

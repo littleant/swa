@@ -6,7 +6,13 @@ import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-public class ManagerConnector implements Runnable {
+/**
+ * Connector for Peers to connect to the NetworkManager
+ * 
+ * @author x.zhang
+ * 
+ */
+class ManagerConnector implements Runnable {
 
 	private String host;
 	private int port;
@@ -20,23 +26,24 @@ public class ManagerConnector implements Runnable {
 
 	@Override
 	public void run() {
-		try (Socket socket = new Socket(host, port)) {
-			try (ObjectOutputStream output = new ObjectOutputStream(
-					socket.getOutputStream());
-					ObjectInputStream input = new ObjectInputStream(
-							socket.getInputStream())) {
-				output.writeInt(node.getListenerPort());
-				output.flush();
+		try (Socket socket = new Socket(host, port);
+				ObjectOutputStream output = new ObjectOutputStream(
+						socket.getOutputStream());
+				ObjectInputStream input = new ObjectInputStream(
+						socket.getInputStream())) {
 
-				Object obj = null;
-				while ((obj = input.readObject()) != null) {
-					if (obj instanceof String) {
-						node.handle((String) obj);
-					} else if (obj instanceof InetSocketAddress) {
-						System.out.println("reconnect");
-						node.reconnect((InetSocketAddress) obj);
-						return;
-					}
+			// send service port of this peer to the manager
+			output.writeInt(node.getListenerPort());
+			output.flush();
+
+			Object obj = null;
+			while ((obj = input.readObject()) != null) {
+				if (obj instanceof String) {
+					node.handle((String) obj);
+				} else if (obj instanceof InetSocketAddress) {
+					System.out.println("reconnect");
+					node.reconnect((InetSocketAddress) obj);
+					return;
 				}
 			}
 		} catch (IOException | ClassNotFoundException e) {

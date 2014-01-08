@@ -5,47 +5,58 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class PeerRouter {
+/**
+ * Router for Peers with no special routing algorithm
+ * @author x.zhang
+ *
+ */
+class PeerRouter {
 
-	public List<Peer> superPeers;
+	public List<PeerConnector> superPeers;
 
 	public PeerRouter() {
-		superPeers = Collections.synchronizedList(new ArrayList<Peer>());
+		superPeers = Collections.synchronizedList(new ArrayList<PeerConnector>());
 	}
 
-	public void add(Peer peer) {
+	public void add(PeerConnector peer) {
 		int n = superPeers.size() > 0 ? superPeers.size() : 1;
 		float superPeerProbability = 1.0f / n;
-		if (superPeers.size() < 1) {
+		if (Math.random() < superPeerProbability) {
 			superPeers.add(peer);
 		} else {
 			int index = (int) (Math.random() * superPeers.size());
-			Peer p = superPeers.get(index);
+			PeerConnector p = superPeers.get(index);
 			peer.redirect(p);
 		}
 	}
 
-	public void remove(Peer peer) {
+	public void remove(PeerConnector peer) {
 		superPeers.remove(peer);
 	}
 
-	public List<PeerConnector> getDestinations(String request) {
-		List<PeerConnector> connectors = new ArrayList<>();
+	/**
+	 * Returns an arbitrary set of Peers to send the request to
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public List<PeerMessenger> getDestinations(String request) {
+		List<PeerMessenger> connectors = new ArrayList<>();
 		if (superPeers.size() == 0) {
 			return connectors;
 		}
 
 		Random random = new Random(System.currentTimeMillis());
-		for (Peer p : superPeers) {
+		for (PeerConnector p : superPeers) {
 			if (random.nextBoolean()) {
-				connectors.add(new PeerConnector(this, p));
+				connectors.add(new PeerMessenger(this, p));
 			}
 		}
 
 		if (connectors.size() == 0) {
-			connectors.add(new PeerConnector(this, superPeers.get(0)));
+			connectors.add(new PeerMessenger(this, superPeers.get(0)));
 		}
-		
+
 		return connectors;
 	}
 }
