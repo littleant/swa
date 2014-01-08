@@ -1,5 +1,8 @@
 package at.ac.tuwien.swa.swazam;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,6 +13,11 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import org.junit.Test;
+
+import ac.at.tuwien.infosys.swa.audio.Fingerprint;
+import ac.at.tuwien.infosys.swa.audio.FingerprintSystem;
+import ac.at.tuwien.infosys.swa.audio.SubFingerprint;
 import at.ac.tuwien.swa.swazam.peer.database.Database;
 
 public class DatabaseTest {
@@ -18,13 +26,13 @@ public class DatabaseTest {
 	public void testSaveFingerprintsAndIdentifyFingerprint() {
 		Database database = new Database();
 		try {
-			AudioInputStream audio = AudioSystem.getAudioInputStream(new File("../music/01 - Anitek - Tab _ Anitek - Opaque.mp3"));
+			AudioInputStream audio = AudioSystem.getAudioInputStream(new File("../../music/01 - Anitek - Tab _ Anitek - Opaque.mp3"));
 			Fingerprint fingerprint = FingerprintSystem.fingerprint(audio);
 			Map<String, Fingerprint> fingerprints = new HashMap<String, Fingerprint>();
-			fingerprints.put("../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", fingerprint);
+			fingerprints.put("../../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", fingerprint);
 			database.saveFingerprints(fingerprints);
 			
-			assertEquals("../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", database.identifyFingerprint(fingerprint));
+			assertEquals("../../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", database.identifyFingerprint(fingerprint));
 		} catch (UnsupportedAudioFileException e) {
 			fail(e.getLocalizedMessage());
 		} catch (IOException e) {
@@ -38,15 +46,15 @@ public class DatabaseTest {
 	public void testSaveFingerprintsAndIdentifyFingerprintTwice() {
 		Database database = new Database();
 		try {
-			AudioInputStream audio = AudioSystem.getAudioInputStream(new File("../music/01 - Anitek - Tab _ Anitek - Opaque.mp3"));
+			AudioInputStream audio = AudioSystem.getAudioInputStream(new File("../../music/01 - Anitek - Tab _ Anitek - Opaque.mp3"));
 			Fingerprint fingerprint = FingerprintSystem.fingerprint(audio);
 			Map<String, Fingerprint> fingerprints = new HashMap<String, Fingerprint>();
-			fingerprints.put("../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", fingerprint);
+			fingerprints.put("../../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", fingerprint);
 			
 			database.saveFingerprints(fingerprints);
 			database.saveFingerprints(fingerprints);
 			
-			assertEquals("../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", database.identifyFingerprint(fingerprint));
+			assertEquals("../../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", database.identifyFingerprint(fingerprint));
 		} catch (UnsupportedAudioFileException e) {
 			fail(e.getLocalizedMessage());
 		} catch (IOException e) {
@@ -60,7 +68,7 @@ public class DatabaseTest {
 	public void testSaveFingerprintsAndIdentifyFingerprintTwoDifferentOnes() {
 		Database database = new Database();
 		try {
-			String [] files = {"../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", "../music/02 - Anitek - Tab _ Anitek - Physical Graffiti.mp3"};
+			String [] files = {"../../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", "../../music/02 - Anitek - Tab _ Anitek - Physical Graffiti.mp3"};
 			for (String file : files) {
 				AudioInputStream audio = AudioSystem.getAudioInputStream(new File(file));
 				Fingerprint fingerprint = FingerprintSystem.fingerprint(audio);
@@ -84,7 +92,7 @@ public class DatabaseTest {
 	public void testGetFingerprints() {
 		Database database = new Database();
 		try {
-			String [] files = {"../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", "../music/02 - Anitek - Tab _ Anitek - Physical Graffiti.mp3"};
+			String [] files = {"../../music/01 - Anitek - Tab _ Anitek - Opaque.mp3", "../../music/02 - Anitek - Tab _ Anitek - Physical Graffiti.mp3"};
 			Map<String, Fingerprint> fingerprints = new HashMap<String, Fingerprint>();
 			for (String file : files) {
 				AudioInputStream audio = AudioSystem.getAudioInputStream(new File(file));
@@ -146,7 +154,7 @@ public class DatabaseTest {
 	public void testDeserializeFingerprint() {
 		Database database = new Database();
 		try {
-			AudioInputStream audio = AudioSystem.getAudioInputStream(new File("../music/01 - Anitek - Tab _ Anitek - Opaque.mp3"));
+			AudioInputStream audio = AudioSystem.getAudioInputStream(new File("../../music/01 - Anitek - Tab _ Anitek - Opaque.mp3"));
 			Fingerprint fingerprint = FingerprintSystem.fingerprint(audio);
 			
 			String serialized = fingerprint.toString();

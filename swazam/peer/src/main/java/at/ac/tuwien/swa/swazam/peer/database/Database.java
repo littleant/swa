@@ -122,7 +122,7 @@ public class Database {
 	 * @param string Serialized Fingerprint
 	 * @return Fingerprint
 	 */
-	protected Fingerprint deserializeFingerprint(Double start, Double shift, String string) {
+	public Fingerprint deserializeFingerprint(Double start, Double shift, String string) {
 		String[] strings = string.split(System.getProperty("line.separator"));
 		
 		Collection<SubFingerprint> subFingerprints = new LinkedList<SubFingerprint>();
@@ -137,7 +137,7 @@ public class Database {
 		return fingerprint;
 	}
 	
-	protected SubFingerprint deserializeSubFingerprint(String string) {
+	public SubFingerprint deserializeSubFingerprint(String string) {
 		int value = 0;
 		
 		if (string.charAt(0) == 1) {

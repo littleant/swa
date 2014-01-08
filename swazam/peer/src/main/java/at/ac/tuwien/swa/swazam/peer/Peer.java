@@ -3,7 +3,7 @@ package at.ac.tuwien.swa.swazam.peer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import at.ac.tuwien.peer.music.MusicLibrary;
+import at.ac.tuwien.swa.swazam.peer.music.MusicLibrary;
 
 /**
  * P2P peer that fingerprints music files and connects to other peers to receive music-identification-requests
