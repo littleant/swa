@@ -140,14 +140,14 @@ public class Database {
 	public SubFingerprint deserializeSubFingerprint(String string) {
 		int value = 0;
 		
-		if (string.charAt(0) == 1) {
-			value = Integer.MIN_VALUE;
-		}
-		
-		for (int i = 1; i < string.length(); i++) {
+		for (int i = 1; i < Integer.SIZE; i++) {
 			if (string.charAt(i) == '1') {
 				value += Math.pow(2, (string.length() - 1) - i);
 			}
+		}
+		
+		if (string.charAt(0) == '1') {
+			value += Integer.MIN_VALUE;
 		}
 		
 		SubFingerprint subFingerprint = new SubFingerprint(value);

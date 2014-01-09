@@ -137,9 +137,48 @@ public class DatabaseTest {
 	}
 	
 	@Test
-	public void testDeserializeSubFingerprint() {
-		// FIXME: Integer.MIN_VALUE doesn't work. Why? Doesn't matter with SubFingerprint.match(), but with SubFingerprint.equals()
-		SubFingerprint subFingerprint = new SubFingerprint(Integer.MAX_VALUE);
+	public void testDeserializeSubFingerprintMaxValue() {
+		SubFingerprint subFingerprint = new SubFingerprint(Integer.MAX_VALUE - 1);
+		String serialized = subFingerprint.toString();
+		
+		Database database = new Database();
+		SubFingerprint deserialized = database.deserializeSubFingerprint(serialized);
+		
+		assertEquals(serialized, deserialized.toString());
+		
+		database.close();
+	}
+	
+	@Test
+	public void testDeserializeSubFingerprintMinValue() {
+		SubFingerprint subFingerprint = new SubFingerprint(Integer.MIN_VALUE + 1);
+		String serialized = subFingerprint.toString();
+		
+		Database database = new Database();
+		SubFingerprint deserialized = database.deserializeSubFingerprint(serialized);
+		
+		assertEquals(serialized, deserialized.toString());
+		
+		database.close();
+	}
+
+	@Test
+	public void testDeserializeSubFingerprintPlusValue() {
+		SubFingerprint subFingerprint = new SubFingerprint(123456789);
+		String serialized = subFingerprint.toString();
+		
+		Database database = new Database();
+		SubFingerprint deserialized = database.deserializeSubFingerprint(serialized);
+		
+		assertEquals(serialized, deserialized.toString());
+		
+		database.close();
+	}
+	
+
+	@Test
+	public void testDeserializeSubFingerprintMinusValue() {
+		SubFingerprint subFingerprint = new SubFingerprint(-123456789);
 		String serialized = subFingerprint.toString();
 		
 		Database database = new Database();
