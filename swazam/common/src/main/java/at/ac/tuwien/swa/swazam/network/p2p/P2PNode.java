@@ -1,17 +1,21 @@
 package at.ac.tuwien.swa.swazam.network.p2p;
 
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
 import at.ac.tuwien.swa.swazam.network.ExecutorFactory;
+import at.ac.tuwien.swa.swazam.network.NetworkNode;
+import at.ac.tuwien.swa.swazam.network.RequestHandler;
 
-public class P2PNode implements PeerListener {
+public class P2PNode implements PeerListener, NetworkNode, RequestHandler {
 
 	private ManagerConnector manager;
 	private ExecutorService executor;
 	private PeerRouter router;
 	private JoinListener joinListener;
+	private List<RequestHandler> handlers;
 
 	public P2PNode(String host, int port) {
 		executor = ExecutorFactory.getExectutor();
@@ -22,10 +26,14 @@ public class P2PNode implements PeerListener {
 
 		manager = new ManagerConnector(host, port, this);
 		executor.execute(manager);
+		handlers = new ArrayList<>();
 	}
 
+	@Override
 	public void handle(String message) {
-		System.out.println(message);
+		for (RequestHandler handler : handlers) {
+			handler.handle(message);
+		}
 		sendRequest(message);
 	}
 
@@ -42,6 +50,7 @@ public class P2PNode implements PeerListener {
 		}
 	}
 
+	@Override
 	public void disconnect() {
 		joinListener.stop();
 		executor.shutdownNow();
@@ -54,5 +63,13 @@ public class P2PNode implements PeerListener {
 
 	public int getListenerPort() {
 		return joinListener.getPortInUse();
+	}
+
+	@Override
+	public void registerRequestHandler(RequestHandler handler) {
+		if (handler == null)
+			return;
+
+		handlers.add(handler);
 	}
 }
