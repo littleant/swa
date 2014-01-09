@@ -160,7 +160,7 @@ public class DatabaseTest {
 			String serialized = fingerprint.toString();
 			Fingerprint deserialized = database.deserializeFingerprint(fingerprint.getStartTime(), fingerprint.getShiftDuration(), serialized);
 			
-			assert(deserialized.equals(fingerprint));
+			assertEquals(fingerprint, deserialized);
 		} catch (UnsupportedAudioFileException e) {
 			fail(e.getMessage());
 		} catch (IOException e) {

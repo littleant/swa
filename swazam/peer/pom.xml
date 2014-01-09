@@ -18,6 +18,29 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ac.at.tuwien.infosys.swa.audio</groupId>
+			<artifactId>fingerprint</artifactId>
+			<version>0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0.8patch02-brew</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -44,44 +67,15 @@
 			</plugin>
 		</plugins>
 	</build>
-	<dependencies>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>1.8.0.8patch02-brew</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-		</dependency>
-		<dependency>
-			<groupId>ac.at.tuwien.infosys.swa.audio</groupId>
-			<artifactId>fingerprint</artifactId>
-			<version>0.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>at.ac.tuwien.swa.swazam</groupId>
-			<artifactId>common</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
+
 	<repositories>
 		<repository>
 			<releases>
-				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
 			</releases>
-			<id>maven.anty.info</id>
-			<name>anty.info Repository</name>
-			<url>http://maven.anty.info</url>
-			<layout>default</layout>
+			<id>in-project</id>
+			<name>In Project Repo</name>
+			<url>file://${project.basedir}/lib</url>
 		</repository>
 	</repositories>
 </project>
