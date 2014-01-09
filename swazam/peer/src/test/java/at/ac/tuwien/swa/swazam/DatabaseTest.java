@@ -14,12 +14,18 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import com.tngtech.java.junit.dataprovider.DataProvider;
+import com.tngtech.java.junit.dataprovider.DataProviderRunner;
+import com.tngtech.java.junit.dataprovider.UseDataProvider;
 
 import ac.at.tuwien.infosys.swa.audio.Fingerprint;
 import ac.at.tuwien.infosys.swa.audio.FingerprintSystem;
 import ac.at.tuwien.infosys.swa.audio.SubFingerprint;
 import at.ac.tuwien.swa.swazam.peer.database.Database;
 
+@RunWith(DataProviderRunner.class)
 public class DatabaseTest {
 
 	@Test
@@ -136,49 +142,22 @@ public class DatabaseTest {
 		database.close();
 	}
 	
-	@Test
-	public void testDeserializeSubFingerprintMaxValue() {
-		SubFingerprint subFingerprint = new SubFingerprint(Integer.MAX_VALUE - 1);
-		String serialized = subFingerprint.toString();
-		
-		Database database = new Database();
-		SubFingerprint deserialized = database.deserializeSubFingerprint(serialized);
-		
-		assertEquals(serialized, deserialized.toString());
-		
-		database.close();
-	}
-	
-	@Test
-	public void testDeserializeSubFingerprintMinValue() {
-		SubFingerprint subFingerprint = new SubFingerprint(Integer.MIN_VALUE + 1);
-		String serialized = subFingerprint.toString();
-		
-		Database database = new Database();
-		SubFingerprint deserialized = database.deserializeSubFingerprint(serialized);
-		
-		assertEquals(serialized, deserialized.toString());
-		
-		database.close();
+	@DataProvider
+	public static Object[][] provideDataForDeserializeSubFingerprint() {
+	    return new Object[][] {
+	        { Integer.MAX_VALUE },
+	        { Integer.MIN_VALUE },
+	        { Integer.MAX_VALUE - 1 },
+	        { Integer.MIN_VALUE + 1 },
+	        { 123456789 },
+	        { -123456789 }
+	    };
 	}
 
 	@Test
-	public void testDeserializeSubFingerprintPlusValue() {
-		SubFingerprint subFingerprint = new SubFingerprint(123456789);
-		String serialized = subFingerprint.toString();
-		
-		Database database = new Database();
-		SubFingerprint deserialized = database.deserializeSubFingerprint(serialized);
-		
-		assertEquals(serialized, deserialized.toString());
-		
-		database.close();
-	}
-	
-
-	@Test
-	public void testDeserializeSubFingerprintMinusValue() {
-		SubFingerprint subFingerprint = new SubFingerprint(-123456789);
+	@UseDataProvider("provideDataForDeserializeSubFingerprint")
+	public void testDeserializeSubFingerprint(int subFingerprintInt) {
+		SubFingerprint subFingerprint = new SubFingerprint(subFingerprintInt);
 		String serialized = subFingerprint.toString();
 		
 		Database database = new Database();
