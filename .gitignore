@@ -17,3 +17,7 @@ target
 /workspace
 .project
 .classpath
+
+# ActiveMQ Data Files #
+/activemq-data
+
