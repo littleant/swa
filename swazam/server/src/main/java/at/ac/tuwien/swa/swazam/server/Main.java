@@ -5,7 +5,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import javax.jms.MessageConsumer;
 import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnection;

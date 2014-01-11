@@ -8,9 +8,11 @@ public class PeerMessage implements Serializable {
 	
 	public static final String ACTIVEMQ_CONNECTOR = "tcp://localhost:61616";
 	public static final String QUEUE_NAME = "MYQUEUE";
+	public static final String REQUEST_IDENTIFIER_NAME = "RequestIdentifier";
 	
 	//TODO specify concrete data types for interface
 	private String peerIdentifier; // which peer sent the message
+	//TODO peerIdentifier: user id or peer id with matching to user id in server database?
 	private String title;
 	private String artist;
 	

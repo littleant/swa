@@ -19,20 +19,19 @@ public class PeerMQTest {
 	 */
 	public static void main(String[] args) {
 		try {
+			// Active MQ Initialization - once per peer
 			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_USER, ActiveMQConnection.DEFAULT_PASSWORD, ActiveMQConnection.DEFAULT_BROKER_URL);
 			ActiveMQConnection connection = (ActiveMQConnection) connectionFactory.createConnection();
 			connection.start();
 			ActiveMQSession session = (ActiveMQSession) connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			ActiveMQDestination queue = (ActiveMQDestination) session.createQueue(PeerMessage.QUEUE_NAME);
-			System.out.println("Create Producer");
 			MessageProducer producer = session.createProducer(queue);
 			producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
-			System.out.println("Create Message");
+			
+			// Message to server when song was found
 			ObjectMessage message = session.createObjectMessage(new PeerMessage("Peer1", "New York, New York", "Frank Sinatra"));
-			message.setStringProperty("RequestIdentifier", "Request1"); //TODO use given request id from server
-			System.out.println("Send Message");
+			message.setStringProperty(PeerMessage.REQUEST_IDENTIFIER_NAME, "Request1"); //TODO use given request id from server
 			producer.send(message);
-			System.out.println("Done");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
