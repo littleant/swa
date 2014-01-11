@@ -11,8 +11,7 @@ public class PeerMessage implements Serializable {
 	public static final String REQUEST_IDENTIFIER_NAME = "RequestIdentifier";
 	
 	//TODO specify concrete data types for interface
-	private String peerIdentifier; // which peer sent the message
-	//TODO peerIdentifier: user id or peer id with matching to user id in server database?
+	private long userId; // which peer user sent the message
 	private String title;
 	private String artist;
 	
@@ -20,15 +19,15 @@ public class PeerMessage implements Serializable {
 		super();
 	}
 	
-	public PeerMessage(String peerIdentifier, String title, String artist) {
+	public PeerMessage(long userId, String title, String artist) {
 		super();
-		this.peerIdentifier = peerIdentifier;
+		this.userId = userId;
 		this.title = title;
 		this.artist = artist;
 	}
 	
-	public String getPeerIdentifier() {
-		return peerIdentifier;
+	public long getUserId() {
+		return userId;
 	}
 	public String getTitle() {
 		return title;
@@ -36,8 +35,8 @@ public class PeerMessage implements Serializable {
 	public String getArtist() {
 		return artist;
 	}
-	public void setPeerIdentifier(String peerIdentifier) {
-		this.peerIdentifier = peerIdentifier;
+	public void setPeerIdentifier(long userId) {
+		this.userId = userId;
 	}
 	public void setTitle(String title) {
 		this.title = title;
@@ -50,7 +49,7 @@ public class PeerMessage implements Serializable {
 	public String toString() {
 		final String CRLF = System.getProperty("line.separator");
 		return "{PeerMessage" + CRLF +
-				"   peerIdentifier=" + this.peerIdentifier + CRLF +
+				"   userId=" + this.userId + CRLF +
 				"   title=" + this.title + CRLF +
 				"   artist=" + this.artist + CRLF +
 				"}";

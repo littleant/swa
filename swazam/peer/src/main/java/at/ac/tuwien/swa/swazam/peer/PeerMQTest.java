@@ -29,7 +29,7 @@ public class PeerMQTest {
 			producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 			
 			// Message to server when song was found
-			ObjectMessage message = session.createObjectMessage(new PeerMessage("Peer1", "New York, New York", "Frank Sinatra"));
+			ObjectMessage message = session.createObjectMessage(new PeerMessage(1l, "New York, New York", "Frank Sinatra"));
 			message.setStringProperty(PeerMessage.REQUEST_IDENTIFIER_NAME, "Request1"); //TODO use given request id from server
 			producer.send(message);
 		} catch (Exception e) {

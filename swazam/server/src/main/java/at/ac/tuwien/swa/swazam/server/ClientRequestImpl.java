@@ -9,6 +9,7 @@ import javax.jms.ObjectMessage;
 import org.apache.activemq.ActiveMQSession;
 import org.apache.activemq.command.ActiveMQDestination;
 
+import at.ac.tuwien.swa.swazam.server.exception.NoCoinsException;
 import at.ac.tuwien.swa.swazam.server.exception.SongNotFoundException;
 
 public class ClientRequestImpl implements ClientRequest {
@@ -33,7 +34,7 @@ public class ClientRequestImpl implements ClientRequest {
 	}
 
 	@Override
-	public ClientRequestResult submitRequest(ClientRequestParam param) throws SongNotFoundException {
+	public ClientRequestResult submitRequest(ClientRequestParam param) throws SongNotFoundException, NoCoinsException {
 		
 		MessageConsumer messageConsumer = null;
 		String messageSelector = PeerMessage.REQUEST_IDENTIFIER_NAME + "='Request1'";
@@ -48,6 +49,13 @@ public class ClientRequestImpl implements ClientRequest {
 		//timeout? max. 5 seconds or so???
 		//what to do after receipt of valid peer message?
 		//inform other peers about success or not?
+		
+		//TODO check if user has coins left to search for songs
+		if (param.getUserId() == 12345l) {
+			throw new NoCoinsException("No coins left for user - search request not permitted");
+		} else {
+			//TODO decrement coin number for user
+		}
 		
 		PeerMessage peerMessage = null;
 		
