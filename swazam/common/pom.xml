@@ -22,5 +22,21 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>ac.at.tuwien.infosys.swa.audio</groupId>
+			<artifactId>fingerprint</artifactId>
+			<version>0.2-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
+    
+    <repositories>
+		<repository>
+			<releases>
+				<updatePolicy>always</updatePolicy>
+			</releases>
+			<id>in-project</id>
+			<name>In Project Repo</name>
+			<url>file://${project.basedir}/lib</url>
+		</repository>
+	</repositories>
 </project>

@@ -29,11 +29,6 @@
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>ac.at.tuwien.infosys.swa.audio</groupId>
-			<artifactId>fingerprint</artifactId>
-			<version>0.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>1.8.0.8patch02-brew</version>
