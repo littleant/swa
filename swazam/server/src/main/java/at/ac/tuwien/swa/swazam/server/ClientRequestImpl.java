@@ -6,19 +6,24 @@ import javax.jms.JMSException;
 import javax.jms.MessageConsumer;
 import javax.jms.ObjectMessage;
 
+import org.apache.activemq.ActiveMQSession;
+import org.apache.activemq.command.ActiveMQDestination;
+
 import at.ac.tuwien.swa.swazam.server.exception.SongNotFoundException;
 
 public class ClientRequestImpl implements ClientRequest {
 	
-	private MessageConsumer messageConsumer;
+	private ActiveMQSession session;
+	private ActiveMQDestination queue;
 	
 	public ClientRequestImpl() {
 		super();
 	}
 	
-	public ClientRequestImpl(MessageConsumer messageConsumer) {
+	public ClientRequestImpl(ActiveMQSession session, ActiveMQDestination queue) {
 		super();
-		this.messageConsumer = messageConsumer;
+		this.session = session;
+		this.queue = queue;
 	}
 
 	@Override
@@ -29,12 +34,23 @@ public class ClientRequestImpl implements ClientRequest {
 
 	@Override
 	public ClientRequestResult submitRequest(ClientRequestParam param) throws SongNotFoundException {
-
-		//TODO fancy peer network call + wait for result
-		//implement kind of timeout? max. 5 seconds or so???
+		
+		MessageConsumer messageConsumer = null;
+		String messageSelector = "RequestIdentifier='Request1'"; //TODO generate unique request identifier
+		
+		//TODO peer network call
+		//parameters for call:
+		// - fingerprint
+		// - unique request identifier
+		
+		//timeout? max. 5 seconds or so???
+		//what to do after receipt of valid peer message?
+		//inform other peers about success or not?
+		
 		PeerMessage peerMessage = null;
 		
 		try {
+			messageConsumer = session.createConsumer(queue, messageSelector);
 			ObjectMessage message = (ObjectMessage) messageConsumer.receive(5000);
 			if (message == null)
 				throw new SongNotFoundException("Song not found - request timed out");
@@ -46,8 +62,7 @@ public class ClientRequestImpl implements ClientRequest {
 				System.out.println("Other message received: " + message.getObject().toString());
 			}
 		} catch (JMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new SongNotFoundException("Song not found due to technical issues.");
 		}
 
 		if(peerMessage != null)

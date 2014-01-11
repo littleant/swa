@@ -16,7 +16,8 @@ import org.apache.activemq.command.ActiveMQDestination;
 
 public class Main {
 
-	private static MessageConsumer messageConsumer;
+	private static ActiveMQSession activeMQSession;
+	private static ActiveMQDestination activeMQDestination;
 	
 	public static void main(String[] args) {
 		initPeerConnection();
@@ -28,7 +29,7 @@ public class Main {
 			System.setSecurityManager(new SecurityManager());
 		
 		try {
-			ClientRequest clientRequest = new ClientRequestImpl(messageConsumer);
+			ClientRequest clientRequest = new ClientRequestImpl(activeMQSession, activeMQDestination);
 			ClientRequest clientStub = (ClientRequest) UnicastRemoteObject.exportObject(clientRequest, ClientRequest.REGISTRY_PORT);
 			Registry registry = LocateRegistry.createRegistry(ClientRequest.REGISTRY_PORT);
 			registry.rebind(ClientRequest.REGISTRY_NAME, clientStub);
@@ -48,9 +49,8 @@ public class Main {
 			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_USER, ActiveMQConnection.DEFAULT_PASSWORD, ActiveMQConnection.DEFAULT_BROKER_URL);
 			ActiveMQConnection connection = (ActiveMQConnection) connectionFactory.createConnection();
 			connection.start();
-			ActiveMQSession session = (ActiveMQSession) connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			ActiveMQDestination queue = (ActiveMQDestination) session.createQueue(PeerMessage.QUEUE_NAME);
-			messageConsumer = session.createConsumer(queue);
+			activeMQSession = (ActiveMQSession) connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			activeMQDestination = (ActiveMQDestination) activeMQSession.createQueue(PeerMessage.QUEUE_NAME);
 			System.out.println("Message queue up and running");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -28,7 +28,7 @@ public class App
 			ClientRequest clientRequest = (ClientRequest) registry.lookup(ClientRequest.REGISTRY_NAME);
 			String answer = clientRequest.doSomething("whazzzup");
 			System.out.println("Result: " + answer);
-			ClientRequestResult result = clientRequest.submitRequest(new ClientRequestParam("FFIINNGGEERRPPRRIINNTT"));
+			ClientRequestResult result = clientRequest.submitRequest(new ClientRequestParam(null));
 			System.out.println(result);
 		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block

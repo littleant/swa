@@ -28,9 +28,8 @@ public class PeerMQTest {
 			MessageProducer producer = session.createProducer(queue);
 			producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 			System.out.println("Create Message");
-			ObjectMessage message = session.createObjectMessage(new PeerMessage("Peer1", "Request1", "New York, New York", "Frank Sinatra"));
-			System.out.println("Set JMS Type");
-			//message.setJMSType(String.class.toString());
+			ObjectMessage message = session.createObjectMessage(new PeerMessage("Peer1", "New York, New York", "Frank Sinatra"));
+			message.setStringProperty("RequestIdentifier", "Request1"); //TODO use given request id from server
 			System.out.println("Send Message");
 			producer.send(message);
 			System.out.println("Done");
