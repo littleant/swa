@@ -19,16 +19,15 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
-        
         if(System.getSecurityManager() == null)
         	System.setSecurityManager(new SecurityManager());
         
         try {
+        	// RMI initialization - once per client
 			Registry registry = LocateRegistry.getRegistry(ClientRequest.REGISTRY_PORT);
 			ClientRequest clientRequest = (ClientRequest) registry.lookup(ClientRequest.REGISTRY_NAME);
-			String answer = clientRequest.doSomething("whazzzup");
-			System.out.println("Result: " + answer);
+			
+			// search request for server
 			ClientRequestResult result = clientRequest.submitRequest(new ClientRequestParam(100l, null));
 			System.out.println(result);
 		} catch (RemoteException | NotBoundException e) {

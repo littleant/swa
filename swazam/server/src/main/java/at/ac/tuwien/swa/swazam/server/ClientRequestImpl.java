@@ -1,7 +1,5 @@
 package at.ac.tuwien.swa.swazam.server;
 
-import java.rmi.RemoteException;
-
 import javax.jms.JMSException;
 import javax.jms.MessageConsumer;
 import javax.jms.ObjectMessage;
@@ -25,12 +23,6 @@ public class ClientRequestImpl implements ClientRequest {
 		super();
 		this.session = session;
 		this.queue = queue;
-	}
-
-	@Override
-	public String doSomething(String someParameter) throws RemoteException {
-		// TODO remove test method
-		return "Hello " + someParameter;
 	}
 
 	@Override
