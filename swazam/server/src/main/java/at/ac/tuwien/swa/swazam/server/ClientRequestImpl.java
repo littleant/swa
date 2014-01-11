@@ -31,12 +31,12 @@ public class ClientRequestImpl implements ClientRequest {
 		MessageConsumer messageConsumer = null;
 		String messageSelector = PeerMessage.REQUEST_IDENTIFIER_NAME + "='Request1'";
 		//TODO generate unique request identifier
-		//UUID.randomUUID().toString()
+		//String requestIdentifier = UUID.randomUUID().toString();
 		
 		//TODO peer network call
-		//parameters for call:
-		// - fingerprint
-		// - unique request identifier
+		//how to instantiate p2p manager
+		//P2PManager manager = null;
+		//manager.sendRequest(new PeerRequest(requestIdentifier, param.getFingerprint()));
 		
 		//timeout? max. 5 seconds or so???
 		//what to do after receipt of valid peer message?
@@ -46,7 +46,7 @@ public class ClientRequestImpl implements ClientRequest {
 		if (param.getUserId() == 12345l) {
 			throw new NoCoinsException("No coins left for user - search request not permitted");
 		} else {
-			//TODO decrement coin number for user
+			//TODO store search request in database, decrement coins for user
 		}
 		
 		PeerMessage peerMessage = null;
@@ -63,7 +63,7 @@ public class ClientRequestImpl implements ClientRequest {
 		}
 
 		if(peerMessage != null) {
-			//TODO add coin for peerMessage.getPeerIdentifier()
+			//TODO add coin for peer user and store answer in database
 			return new ClientRequestResult(peerMessage.getTitle(), peerMessage.getArtist());
 		}
 		else
