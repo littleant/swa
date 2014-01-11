@@ -19,5 +19,5 @@ target
 .classpath
 
 # ActiveMQ Data Files #
-./swazam/server/activemq-data
+activemq-data/
 
