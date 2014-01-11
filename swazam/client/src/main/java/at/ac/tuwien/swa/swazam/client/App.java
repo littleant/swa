@@ -8,6 +8,7 @@ import java.rmi.registry.Registry;
 import at.ac.tuwien.swa.swazam.server.ClientRequest;
 import at.ac.tuwien.swa.swazam.server.ClientRequestParam;
 import at.ac.tuwien.swa.swazam.server.ClientRequestResult;
+import at.ac.tuwien.swa.swazam.server.exception.SongNotFoundException;
 
 /**
  * Hello world!
@@ -32,6 +33,8 @@ public class App
 		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (SongNotFoundException e) {
+			System.out.println(e.getMessage());
 		}
     }
 }
