@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 
 import at.ac.tuwien.swa.swazam.network.ExecutorFactory;
+import at.ac.tuwien.swa.swazam.server.PeerRequest;
 
 /**
  * Class for the NetworkMananger to communicate with peers
@@ -28,7 +29,7 @@ class PeerMessenger {
 	 * 
 	 * @param request
 	 */
-	public void sendAsync(final String request) {
+	public void sendAsync(final PeerRequest request) {
 		System.out.println("Send: " + request);
 		executor.execute(new Runnable() {
 			@Override

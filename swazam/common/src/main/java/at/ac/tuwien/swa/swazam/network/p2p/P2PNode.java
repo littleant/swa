@@ -8,6 +8,7 @@ import java.util.concurrent.ExecutorService;
 import at.ac.tuwien.swa.swazam.network.ExecutorFactory;
 import at.ac.tuwien.swa.swazam.network.NetworkNode;
 import at.ac.tuwien.swa.swazam.network.RequestHandler;
+import at.ac.tuwien.swa.swazam.server.PeerRequest;
 
 public class P2PNode implements PeerListener, NetworkNode, RequestHandler {
 
@@ -30,7 +31,7 @@ public class P2PNode implements PeerListener, NetworkNode, RequestHandler {
 	}
 
 	@Override
-	public void handle(String message) {
+	public void handle(PeerRequest message) {
 		for (RequestHandler handler : handlers) {
 			handler.handle(message);
 		}
@@ -43,7 +44,7 @@ public class P2PNode implements PeerListener, NetworkNode, RequestHandler {
 		executor.execute(manager);
 	}
 
-	public void sendRequest(String request) {
+	public void sendRequest(PeerRequest request) {
 		List<PeerMessenger> connectors = router.getDestinations(request);
 		for (PeerMessenger c : connectors) {
 			c.sendAsync(request);

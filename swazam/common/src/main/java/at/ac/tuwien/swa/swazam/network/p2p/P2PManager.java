@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutorService;
 
 import at.ac.tuwien.swa.swazam.network.ExecutorFactory;
 import at.ac.tuwien.swa.swazam.network.NetworkManager;
+import at.ac.tuwien.swa.swazam.server.PeerRequest;
 
 public class P2PManager implements NetworkManager, PeerListener {
 
@@ -25,7 +26,7 @@ public class P2PManager implements NetworkManager, PeerListener {
 	}
 	
 	@Override
-	public void sendRequest(String request) {
+	public void sendRequest(PeerRequest request) {
 		List<PeerMessenger> connectors = router.getDestinations(request);
 		for(PeerMessenger c : connectors) {
 			c.sendAsync(request);

@@ -7,6 +7,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
+import at.ac.tuwien.swa.swazam.server.PeerRequest;
+
 /**
  * Class NetworkManager to connect to Peers
  * 
@@ -39,7 +41,7 @@ class PeerConnector {
 		}
 	}
 
-	public void send(String request) throws IOException {
+	public void send(PeerRequest request) throws IOException {
 		outputStream.writeObject(request);
 		outputStream.flush();
 	}

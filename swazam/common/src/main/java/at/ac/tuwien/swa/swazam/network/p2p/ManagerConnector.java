@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import at.ac.tuwien.swa.swazam.server.PeerRequest;
+
 /**
  * Connector for Peers to connect to the NetworkManager
  * 
@@ -38,8 +40,8 @@ class ManagerConnector implements Runnable {
 
 			Object obj = null;
 			while ((obj = input.readObject()) != null) {
-				if (obj instanceof String) {
-					node.handle((String) obj);
+				if (obj instanceof PeerRequest) {
+					node.handle((PeerRequest) obj);
 				} else if (obj instanceof InetSocketAddress) {
 					System.out.println("reconnect");
 					node.reconnect((InetSocketAddress) obj);

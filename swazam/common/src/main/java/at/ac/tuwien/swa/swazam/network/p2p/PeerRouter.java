@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import at.ac.tuwien.swa.swazam.server.PeerRequest;
+
 /**
  * Router for Peers with no special routing algorithm
  * @author x.zhang
@@ -40,7 +42,7 @@ class PeerRouter {
 	 * @param request
 	 * @return
 	 */
-	public List<PeerMessenger> getDestinations(String request) {
+	public List<PeerMessenger> getDestinations(PeerRequest request) {
 		List<PeerMessenger> connectors = new ArrayList<>();
 		if (superPeers.size() == 0) {
 			return connectors;
