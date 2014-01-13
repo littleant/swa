@@ -31,11 +31,14 @@ public class P2PNode implements PeerListener, NetworkNode, RequestHandler {
 	}
 
 	@Override
-	public void handle(PeerRequest message) {
+	public boolean handle(PeerRequest message) {
 		for (RequestHandler handler : handlers) {
-			handler.handle(message);
+			if (handler.handle(message)) {
+				return true;
+			}
 		}
 		sendRequest(message);
+		return false;
 	}
 
 	public void reconnect(InetSocketAddress addr) {

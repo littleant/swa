@@ -16,6 +16,11 @@ import at.ac.tuwien.swa.swazam.peer.database.DatabaseConnector;
  */
 public class MusicLibrary {
 	static final Logger logger = LoggerFactory.getLogger(MusicLibrary.class);
+	private DatabaseConnector databaseConnector;
+
+	public MusicLibrary() {
+		databaseConnector = new DatabaseConnector();
+	}
 
 	/**
 	 * Retrieve all fingerprints from the database
@@ -23,12 +28,15 @@ public class MusicLibrary {
 	 * @return Map of fingerprints and their names
 	 */
 	public Map<Fingerprint, String> getFingerprints() {
-		DatabaseConnector databaseConnector = new DatabaseConnector();
-		Map<Fingerprint, String> fingerprints = databaseConnector.getFingerprints();
-		
+		Map<Fingerprint, String> fingerprints = databaseConnector
+				.getFingerprints();
 		return fingerprints;
 	}
 	
+	public String identify(Fingerprint print) {
+		return databaseConnector.identifyFingerprint(print);
+	}
+
 	/**
 	 * Fingerprint the music on the disk
 	 * 
@@ -43,15 +51,14 @@ public class MusicLibrary {
 		logger.info("Fingerprinting files...");
 		Map<String, Fingerprint> fingerprints = this.fingerprintFiles(files);
 		logger.info("{} fingerprints generated.", fingerprints.size());
-		
+
 		logger.info("Saving fingerprints in database...");
-		DatabaseConnector databaseConnector = new DatabaseConnector();
 		databaseConnector.saveFingerprints(fingerprints);
 		logger.info("Fingerprints saved.");
-		
+
 		return fingerprints.size();
 	}
-	
+
 	/**
 	 * Fingerprint all files in the music-directory
 	 * 
@@ -59,8 +66,9 @@ public class MusicLibrary {
 	 */
 	protected Map<String, Fingerprint> fingerprintFiles(File[] files) {
 		FingerprintGenerator fingerprintGenerator = new FingerprintGenerator();
-		Map<String, Fingerprint> fingerprints = fingerprintGenerator.fingerprintFiles(files);
-		
+		Map<String, Fingerprint> fingerprints = fingerprintGenerator
+				.fingerprintFiles(files);
+
 		return fingerprints;
 	}
 }

@@ -15,17 +15,17 @@ public class Main {
 
 	public static void main(String[] args) {
 		Logger logger = LoggerFactory.getLogger(Main.class);
-		
+
 		PropertyConfigurator.configure("log4j.properties");
-		
-		Peer runnable = new Peer();
+
+		Peer runnable = new Peer("localhost", 8888);
 		Thread thread = new Thread(runnable);
 		thread.start();
-		
+
 		System.out.println("Press [Enter] to close...");
 		try {
 			System.in.read();
-			
+
 			logger.info("exiting...");
 			runnable.stop();
 			thread.join();
