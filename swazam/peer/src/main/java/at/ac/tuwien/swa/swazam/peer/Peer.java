@@ -25,14 +25,10 @@ public class Peer implements Runnable, RequestHandler {
 	private MessagingConnector msgConnector;
 	private long userId;
 
-	public Peer(String host, int port) {
+	public Peer(String host, int port, long userId) {
 		this.host = host;
 		this.port = port;
-		this.userId = -1;
-	}
-	
-	public void login(String username) {
-		
+		this.userId = userId;
 	}
 
 	@Override
@@ -65,14 +61,14 @@ public class Peer implements Runnable, RequestHandler {
 		}
 
 		logger.info("Identifying fingerprint");
-		String name = musicLibrary.identify(request.getFingerprint());
+		String title = musicLibrary.identify(request.getFingerprint());
 
-		if (name == null) {
+		if (title == null) {
 			logger.info("No match found for fingerprint");
 			return false;
 		}
 		logger.info("Match found for fingerprint");
-		PeerMessage msg = new PeerMessage(this.userId, name, "");
+		PeerMessage msg = new PeerMessage(this.userId, title, "");
 		msgConnector.sendMessage(request.getRequestIdentifier(), msg);
 		return true;
 	}

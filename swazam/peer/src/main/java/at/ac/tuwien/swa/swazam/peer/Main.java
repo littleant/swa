@@ -18,7 +18,7 @@ public class Main {
 
 		PropertyConfigurator.configure("log4j.properties");
 
-		Peer runnable = new Peer("localhost", 8888);
+		Peer runnable = new Peer("localhost", 8888, 12345L);
 		Thread thread = new Thread(runnable);
 		thread.start();
 
