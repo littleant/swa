@@ -32,6 +32,7 @@
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>1.8.0.8patch02-brew</version>
+			<type>pom</type>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
