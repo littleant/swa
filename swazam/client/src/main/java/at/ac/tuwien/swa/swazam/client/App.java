@@ -25,9 +25,22 @@ public class App
 
     public static void main( String[] args )
     {
-    	System.out.println( "Started App" );
-    	ClientModel client = new ClientModel();
-  //  	client.startClient();
+    	if (args.length != 1)
+    	{
+    		System.out.println("Usage: client <id : long>");
+    	}
+    	else
+    	{
+    		System.out.println( "Started App" );
+    		try{
+    		ClientModel client = new ClientModel(Long.parseLong(args[0]));
+    		}catch(Exception e)
+    		{
+    			System.out.println("Usage: client <id : long>");
+    			System.err.println(e);
+    		}
+    	}
+    	//  	client.startClient();
      //   client.setVisible(true);
         
 //        if(System.getSecurityManager() == null)

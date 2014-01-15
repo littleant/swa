@@ -9,7 +9,7 @@ import java.awt.Dimension;
 
 public class ClientView extends JFrame
 {
-	private static long clientId = 1;
+
 	private ClientViewModel viewmodel;
 	
 	//Components
@@ -27,7 +27,7 @@ public class ClientView extends JFrame
 		
 	private DefaultComboBoxModel cmodel;
 
-	private long id;
+
 
 
 
@@ -43,8 +43,7 @@ public class ClientView extends JFrame
 		this.viewmodel = viewmodel;
 		initListeners();
 		initComponents();
-		id = clientId;
-		ClientView.clientId++;
+
 		
 	}
 	
@@ -113,7 +112,7 @@ public class ClientView extends JFrame
 			
 			panel.setLayout(null);
 			
-			title = new JLabel("Client "+id+" Choose Music:");
+			title = new JLabel("Choose Music:");
 			resultLabel = new JLabel("Unknown Song");
 			
 			
@@ -182,13 +181,6 @@ public class ClientView extends JFrame
 			this.cmodel = cmodel;
 		}
 		
-		public long getId() {
-			return id;
-		}
 
-
-		public void setId(long id) {
-			this.id = id;
-		}
 		
 }

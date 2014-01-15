@@ -1,4 +1,4 @@
-package at.ac.tuwien.swa.swazam.peer.music;
+package at.ac.tuwien.swa.swazam.fingerprintgenerator;
 
 import java.io.File;
 import java.io.IOException;
@@ -61,5 +61,46 @@ public class FingerprintGenerator {
 		}
 		
 		return fingerprints;
+	}
+	
+	/**
+	 * Fingerprint one audio file 
+	 * 
+	 * @param  File to fingerprint
+	 * @return Fingerprint of the file
+	 */
+	public Fingerprint fingerprintFile(File file) {
+	//	Map<String, Fingerprint> fingerprints = new HashMap<String, Fingerprint>();
+		Fingerprint fingerprint = null;
+	//	logger.debug("Got {} file(s)!", files.length);
+		
+	//	for (File file : files) {
+		if (file == null) {
+				// skip file
+			return null;
+		}
+			
+		if (file.isDirectory()) {
+	        logger.debug("Directory!: {}", file.getName());
+	        return null;
+	    } 
+		else 
+	    {
+	        logger.debug("File: {}", file.getName());
+	            
+	            // fingerprint file
+	        try {
+	        		AudioInputStream audio = AudioSystem.getAudioInputStream(file);
+		        	fingerprint = FingerprintSystem.fingerprint(audio);
+		            
+	        	} catch (UnsupportedAudioFileException e) {
+					logger.debug(e.getLocalizedMessage(), e);
+				} catch (IOException e) {
+					logger.debug(e.getLocalizedMessage(), e);
+				}
+	        }
+	//	}
+		
+		return fingerprint;
 	}
 }

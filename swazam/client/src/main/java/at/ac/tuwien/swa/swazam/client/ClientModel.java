@@ -9,6 +9,7 @@ import java.rmi.registry.Registry;
 import java.util.Map;
 
 import ac.at.tuwien.infosys.swa.audio.Fingerprint;
+import at.ac.tuwien.swa.swazam.fingerprintgenerator.FingerprintGenerator;
 import at.ac.tuwien.swa.swazam.server.ClientRequest;
 import at.ac.tuwien.swa.swazam.server.ClientRequestParam;
 import at.ac.tuwien.swa.swazam.server.ClientRequestResult;
@@ -23,11 +24,19 @@ public class ClientModel
 	
 	private ClientRequest clientRequest; 
 	
-	public ClientModel()
+	private long id;
+	
+	private Registry registry;
+	
+	public ClientModel(long id)
 	{
 		soundrec = new SoundRecorder();	
 		clientview = new ClientViewModel(this);
+		this.id = id;
 		
+		// RMI initialization - once per client
+		registry = LocateRegistry.getRegistry(ClientRequest.REGISTRY_PORT);
+		clientRequest = (ClientRequest) registry.lookup(ClientRequest.REGISTRY_NAME);
 		
 	}
 	
@@ -46,12 +55,10 @@ public class ClientModel
          
          try {
         	 
-        			// RMI initialization - once per client
-        		Registry registry = LocateRegistry.getRegistry(ClientRequest.REGISTRY_PORT);
-        		clientRequest = (ClientRequest) registry.lookup(ClientRequest.REGISTRY_NAME);
+        			
         			
     			// search request for server
-    			ClientRequestResult result = clientRequest.submitRequest(new ClientRequestParam(clientview.view.getId(), fingerprint.fingerprintFile(music)));
+    			ClientRequestResult result = clientRequest.submitRequest(new ClientRequestParam(id, fingerprint.fingerprintFile(music)));
     			System.out.println(result);
     			clientview.printResolvedSong(result.getTitle());
     		} catch (RemoteException | NotBoundException e) {
