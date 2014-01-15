@@ -1,0 +1,11 @@
+ToDo:
+-> Datenbank bei peer verwendet ? (Andreas)
+-> Dummywerte in Server (Gerhard)
+-> Refactoring zu Diagramm (Gerhard)
+-> Server View & Backend (Georg)
+-> evtl. FingerprintGenerator in common (bernhard)
+-> Id übergeben Client (bernhard)
+-> Google Doc aufmachen (bernhard)
+-> client richtig reinkopieren (bernhard)
+-> Gesamtsystem testen (Lin)
+-> Doku schreiben (alle)
