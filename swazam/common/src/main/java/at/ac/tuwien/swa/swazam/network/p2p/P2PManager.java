@@ -9,6 +9,7 @@ import at.ac.tuwien.swa.swazam.server.PeerRequest;
 
 public class P2PManager implements NetworkManager, PeerListener {
 
+	public static int DEFAULT_PORT = 8888;
 	private ExecutorService executor;
 	private PeerRouter router;
 	private JoinListener joinListener;

@@ -8,7 +8,7 @@ import at.ac.tuwien.swa.swazam.server.PeerRequest;
 
 public class ManagerRunner {
 	public static void main(String[] args) throws IOException {
-		NetworkManager manager = new P2PManager(8888);
+		NetworkManager manager = new P2PManager(P2PManager.DEFAULT_PORT);
 		try (Scanner scanner = new Scanner(System.in)) {
 			while (scanner.hasNextLine()) {
 				String input = scanner.next();

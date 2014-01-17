@@ -10,8 +10,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		ServerModel serverModel = new ServerModel();
-		serverModel.initPeerConnection();
-		serverModel.initClientConnection();
+		serverModel.init();
 	}
 	
 	
