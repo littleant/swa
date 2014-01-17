@@ -23,6 +23,10 @@ import at.ac.tuwien.swa.swazam.server.exception.SongNotFoundException;
 public class App 
 {
 
+	/*
+	 * start with these command line options:
+	 * -Djava.security.policy=${project_loc:client}/src/main/java/at/ac/tuwien/swa/swazam/client/client.policy
+	 */
     public static void main( String[] args )
     {
     	if (args.length != 1)
