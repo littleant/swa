@@ -3,6 +3,8 @@ package at.ac.tuwien.swa.swazam.client;
 import java.io.File;
 import java.util.List;
 
+import at.ac.tuwien.swa.swazam.fingerprintgenerator.Filesystem;
+
 public class SoundRecorder 
 {
 	
@@ -15,7 +17,7 @@ public class SoundRecorder
 	
 	public List<File> getRecords()
 	{
-		return filesys.getMusicFiles("../music/");
+		return filesys.listMusicFiles("../music/");
 	}
 	
 	
