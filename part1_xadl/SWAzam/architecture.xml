@@ -51,7 +51,6 @@
                 <types:type xlink:href="#interfaceType7f000101-48384691-ce8ee8d9-2881087f" xlink:type="simple" xsi:type="instance:XMLLink"/>
                 <types:signature xlink:href="#7f000101-483ddbf7-b0a5e2dc-28810a5c" xlink:type="simple" xsi:type="instance:XMLLink"/>
             </types:interface>
-            
             <types:interface types:id="interfaceffa8034b-99271379-c7b6a3a4-b1e81058" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">out</types:direction>
@@ -60,7 +59,6 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">out</types:direction>
             </types:interface>
-            
             <types:interface types:id="interface0a00000d-9b05a5f1-f524fbce-160117c6" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">out</types:direction>
@@ -69,7 +67,21 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
             </types:interface>
+            <types:interface types:id="interface0a00000c-aafbd82c-ad68a262-263502b6" xsi:type="types:Interface">
+                <types:description xsi:type="instance:Description">[New Interface]</types:description>
+                <types:direction xsi:type="instance:Direction">in</types:direction>
+            </types:interface>
             <types:type xlink:href="#componentTypeffa8034b-990d9ded-46f78213-b1e8073e" xlink:type="simple" xsi:type="instance:XMLLink"/>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             
@@ -308,7 +320,7 @@
             
         </types:component>
         <types:component types:id="component0a00000d-9af50778-77382480-16011412" xsi:type="types:Component">
-            <types:description xsi:type="instance:Description">Neighbour Router</types:description>
+            <types:description xsi:type="instance:Description">Peer Router</types:description>
             <types:interface types:id="interface0a00000d-9af6eb2a-1494d96d-160114f0" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
@@ -347,7 +359,6 @@
             
             
         </types:component>
-        
         <types:connector types:id="connectorffa8034b-9908db5b-8ca6a01c-b1e8054e" xsi:type="types:Connector">
             <types:description xsi:type="instance:Description">Synchronous Server Proxy</types:description>
             <types:interface types:id="interfaceffa8034b-9908db5c-493eb7d4-b1e8054f" xsi:type="types:Interface">
@@ -378,7 +389,6 @@
         </types:connector>
         <types:connector types:id="connectorffa8034b-99205bc4-bee87740-b1e80e01" xsi:type="types:Connector">
             <types:description xsi:type="instance:Description">P2P Connector</types:description>
-            
             <types:interface types:id="interfaceffa8034b-992264cd-2c7ed7ef-b1e80f9c" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
@@ -387,8 +397,17 @@
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
                 <types:direction xsi:type="instance:Direction">in</types:direction>
             </types:interface>
-            
+            <types:interface types:id="interface0a00000c-aafb9f1d-eeec9cdf-2635028a" xsi:type="types:Interface">
+                <types:description xsi:type="instance:Description">[New Interface]</types:description>
+                <types:direction xsi:type="instance:Direction">out</types:direction>
+            </types:interface>
             <types:type xlink:href="#connectorTypeffa8034b-991a7ba7-55324550-b1e80b2b" xlink:type="simple" xsi:type="instance:XMLLink"/>
+            
+            
+            
+            
+            
+            
             
             
             
@@ -420,7 +439,7 @@
             <types:type xlink:href="#connectorTypeffa8034b-993308ec-3691afbc-b1e813dc" xlink:type="simple" xsi:type="instance:XMLLink"/>
         </types:connector>
         <types:connector types:id="connector0a00000d-9afb3a81-f1bcb112-16011655" xsi:type="types:Connector">
-            <types:description xsi:type="instance:Description">Neighbourhood Connector</types:description>
+            <types:description xsi:type="instance:Description">P2P Connector</types:description>
             
             <types:interface types:id="interface0a00000d-9afbed61-771e4986-160116e7" xsi:type="types:Interface">
                 <types:description xsi:type="instance:Description">[New Interface]</types:description>
@@ -645,7 +664,6 @@
                 <instance:anchorOnInterface xlink:href="#interface0a00000d-9af6eb2a-1494d96d-160114f0" xlink:type="simple" xsi:type="instance:XMLLink"/>
             </types:point>
         </types:link>
-        
         <types:link types:id="link0a00000d-9afccf84-b8838e9d-16011756" xsi:type="types:Link">
             <types:description xsi:type="instance:Description">[New Link]</types:description>
             <types:point xsi:type="instance:Point">
@@ -691,7 +709,6 @@
                 <instance:anchorOnInterface xlink:href="#interface0a00000d-9b0998a5-63e1fc9c-160119ac" xlink:type="simple" xsi:type="instance:XMLLink"/>
             </types:point>
         </types:link>
-        
         <types:link types:id="link0a00000c-aa74619f-67c3a243-1b570499" xsi:type="types:Link">
             <types:description xsi:type="instance:Description">[New Link]</types:description>
             <types:point xsi:type="instance:Point">
@@ -701,6 +718,72 @@
                 <instance:anchorOnInterface xlink:href="#interface0a00000c-aa73c3d3-082bc68d-1b570463" xlink:type="simple" xsi:type="instance:XMLLink"/>
             </types:point>
         </types:link>
+        <types:link types:id="link0a00000c-aafbf845-333693ad-263502bf" xsi:type="types:Link">
+            <types:description xsi:type="instance:Description">[New Link]</types:description>
+            <types:point xsi:type="instance:Point">
+                <instance:anchorOnInterface xlink:href="#interface0a00000c-aafb9f1d-eeec9cdf-2635028a" xlink:type="simple" xsi:type="instance:XMLLink"/>
+            </types:point>
+            <types:point xsi:type="instance:Point">
+                <instance:anchorOnInterface xlink:href="#interface0a00000c-aafbd82c-ad68a262-263502b6" xlink:type="simple" xsi:type="instance:XMLLink"/>
+            </types:point>
+        </types:link>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -4043,6 +4126,273 @@
                         <hints3:value hints3:data="{EDGE,{1.0,0.25}}" hints3:type="{[Ljava.lang.Object;,2,enum:edu.uci.isr.bna4.logics.coordinating.MaintainStickyPointLogic$StickyMode,{[F,2,java.lang.Float,java.lang.Float}}" xsi:type="hints3:PropertyValue"/>
                     </hints3:property>
                 </hints3:hintedElement>
+                <hints3:hintedElement xsi:type="hints3:HintedElement">
+                    <hints3:target xlink:href="#interface0a00000c-aafb9f1d-eeec9cdf-2635028a" xlink:type="simple" xsi:type="instance:XMLLink"/>
+                    <hints3:property hints3:name="background/color" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="255,255,255" hints3:type="org.eclipse.swt.graphics.RGB" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                    <hints3:property hints3:name="glass/anchorPoint" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="10925,10225" hints3:type="org.eclipse.draw2d.geometry.Point" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                    <hints3:property hints3:name="glass/anchorPoint-StuckInfo" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="{EDGE,{1.0,0.25}}" hints3:type="{[Ljava.lang.Object;,2,enum:edu.uci.isr.bna4.logics.coordinating.MaintainStickyPointLogic$StickyMode,{[F,2,java.lang.Float,java.lang.Float}}" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                </hints3:hintedElement>
+                <hints3:hintedElement xsi:type="hints3:HintedElement">
+                    <hints3:target xlink:href="#interface0a00000c-aafbd82c-ad68a262-263502b6" xlink:type="simple" xsi:type="instance:XMLLink"/>
+                    <hints3:property hints3:name="background/color" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="255,255,255" hints3:type="org.eclipse.swt.graphics.RGB" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                    <hints3:property hints3:name="glass/anchorPoint" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="11000,10175" hints3:type="org.eclipse.draw2d.geometry.Point" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                    <hints3:property hints3:name="glass/anchorPoint-StuckInfo" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="{EDGE,{0.0,0.5}}" hints3:type="{[Ljava.lang.Object;,2,enum:edu.uci.isr.bna4.logics.coordinating.MaintainStickyPointLogic$StickyMode,{[F,2,java.lang.Float,java.lang.Float}}" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                </hints3:hintedElement>
+                <hints3:hintedElement xsi:type="hints3:HintedElement">
+                    <hints3:target xlink:href="#link0a00000c-aafbf845-333693ad-263502bf" xlink:type="simple" xsi:type="instance:XMLLink"/>
+                    <hints3:property hints3:name="glass/midpoints" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="{}" hints3:type="{[Lorg.eclipse.draw2d.geometry.Point;,0}" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                    <hints3:property hints3:name="glass/endpoint1" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="10930,10222" hints3:type="org.eclipse.draw2d.geometry.Point" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                    <hints3:property hints3:name="glass/endpoint2" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="10995,10178" hints3:type="org.eclipse.draw2d.geometry.Point" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                    <hints3:property hints3:name="glass/endpoint1-StuckInfo" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="{EDGE_FROM_CENTER}" hints3:type="{[Ljava.lang.Object;,1,enum:edu.uci.isr.bna4.logics.coordinating.MaintainStickyPointLogic$StickyMode}" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                    <hints3:property hints3:name="glass/endpoint2-StuckInfo" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="{EDGE_FROM_CENTER}" hints3:type="{[Ljava.lang.Object;,1,enum:edu.uci.isr.bna4.logics.coordinating.MaintainStickyPointLogic$StickyMode}" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                </hints3:hintedElement>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 
                 
@@ -5259,6 +5609,57 @@
                     </hints3:property>
                 </hints3:hintedElement>
             </hints3:hintedElement>
+            <hints3:hintedElement xsi:type="hints3:HintedElement">
+                <hints3:target xlink:href="#componentType0a000013-a9f02a3f-3b10e4ee-b63f08be" xsi:type="instance:XMLLink" xlink:type="simple"/>
+                <hints3:hintedElement xsi:type="hints3:HintedElement">
+                    <hints3:target xlink:href="#componentType0a000013-a9f02a3f-3b10e4ee-b63f08be" xsi:type="instance:XMLLink" xlink:type="simple"/>
+                    <hints3:property hints3:name="glass/boundingBox" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="10010,10010,100,100" hints3:type="org.eclipse.draw2d.geometry.Rectangle" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                </hints3:hintedElement>
+            </hints3:hintedElement>
+            <hints3:hintedElement xsi:type="hints3:HintedElement">
+                <hints3:target xlink:href="#connectorType0a000013-a9f08dac-1efe1445-b63f0910" xsi:type="instance:XMLLink" xlink:type="simple"/>
+                <hints3:hintedElement xsi:type="hints3:HintedElement">
+                    <hints3:target xlink:href="#connectorType0a000013-a9f08dac-1efe1445-b63f0910" xsi:type="instance:XMLLink" xlink:type="simple"/>
+                    <hints3:property hints3:name="glass/boundingBox" xsi:type="hints3:Property">
+                        <hints3:value hints3:data="10010,10010,100,100" hints3:type="org.eclipse.draw2d.geometry.Rectangle" xsi:type="hints3:PropertyValue"/>
+                    </hints3:property>
+                </hints3:hintedElement>
+            </hints3:hintedElement>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             
@@ -5502,9 +5903,9 @@
                 </hints3:property>
             </hints3:hintedElement>
             <hints3:hintedElement xsi:type="hints3:HintedElement">
-                <hints3:target xlink:href="#componentType0a000013-a9ed937d-a482855e-b63f068c" xsi:type="instance:XMLLink" xlink:type="simple"/>
+                <hints3:target xlink:href="#componentType0a000013-a9ed937d-a482855e-b63f068c" xlink:type="simple" xsi:type="instance:XMLLink"/>
                 <hints3:property hints3:name="boxColor" xsi:type="hints3:Property">
-                    <hints3:value hints3:data="104,113,191" xsi:type="hints3:PropertyValue" hints3:type="org.eclipse.swt.graphics.RGB"/>
+                    <hints3:value hints3:data="104,113,191" hints3:type="org.eclipse.swt.graphics.RGB" xsi:type="hints3:PropertyValue"/>
                 </hints3:property>
             </hints3:hintedElement>
             
