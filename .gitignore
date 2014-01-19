@@ -4,7 +4,6 @@
 .settings/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 LunarLanderExample
@@ -14,7 +13,7 @@ RemoteSystemsTempFiles
 
 # Project Files #
 target
-/workspace
+workspace
 .project
 .classpath
 
