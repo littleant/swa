@@ -2,7 +2,8 @@ package at.ac.tuwien.swa.swazam.server;
 
 
 public class Main {
-
+        public static UserInfoRepo repo = new UserInfoRepo();
+        public static UserRequestHistoryRepo histRepo = new UserRequestHistoryRepo();
 	/*
 	 * start with these command line options:
 	 * -Djava.rmi.server.codebase=${project_loc:server}/target/classes
