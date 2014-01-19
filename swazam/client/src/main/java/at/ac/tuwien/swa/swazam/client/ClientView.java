@@ -116,7 +116,7 @@ public class ClientView extends JFrame
 			resultLabel = new JLabel("Unknown Song");
 			
 			
-			title.setBounds(30, 20, 120, 20);
+			title.setBounds(30, 20, 150, 20);
 			
 			resultLabel.setBounds(30, 130, 300, 20);
 			
@@ -129,7 +129,7 @@ public class ClientView extends JFrame
 			sendButton = new JButton("Recognize");
 			sendButton.addActionListener(sendPressedListener);
 			
-			sendButton.setBounds(20, 100, 120, 20);
+			sendButton.setBounds(30, 100, 120, 20);
 			
 			
 			panel.setBounds(300, 200, 300, 200);
